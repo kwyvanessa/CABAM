@@ -1,0 +1,29 @@
+﻿vegetable_type,quantity ,unit,imperial (oz or lb.) ,weight,imperial_unit,weight_per_lb
+artichoke ,1,NaN,13 oz ,13,oz,0.8125
+asparagus ,1,NaN,0.8 oz,0.8,oz,0.05
+garlic ,1,clove,0.18 oz,0.18,oz,0.01125
+green beans ,1,NaN,0.18 oz,0.18,oz,0.01125
+beets ,1,NaN,4 oz ,4,oz,0.25
+bell pepper,1,NaN,6 oz ,6,oz,0.375
+broccoli ,1,NaN,8 oz ,8,oz,0.5
+brussel sprouts ,1,NaN,0.5 oz,0.5,oz,0.03125
+cabbage ,1,head,2 lb,2,lb,2
+carrots ,1,NaN,2.1 oz ,2.1,oz,0.13125
+cauliflower,1,head,1.1 lb,1.1,lb,1.1
+celery,1,stalk,1 lb,1,lb,1
+corn,1,cob,6.3 oz,6.3,oz,0.39375
+cucumber ,1,NaN,8.8 oz ,8.8,oz,0.55
+kale,1,bunch,7 oz,7,oz,0.4375
+lettuce ,1,head,1.8 lb,1.8,lb,1.8
+mushrooms (white),1,NaN,0.53 oz,0.53,oz,0.033125
+onion (yellow),1,NaN,5.6 oz ,5.6,oz,0.35
+parsnip,1,NaN,4 oz,4,oz,0.25
+pea,1,NaN,0.01 oz,0.01,oz,0.000625
+potato,1,NaN,6.5 oz ,6.5,oz,0.40625
+snow pea ,1,NaN,0.1 oz,0.1,oz,0.00625
+spinach ,1,cup,1 oz ,1,oz,0.0625
+squash (yellow),1,NaN,7 oz,7,oz,0.4375
+squash (butternut) ,1,NaN,2.5 lb,2.5,lb,2.5
+sweet Potato,1,NaN,4 oz ,4,oz,0.25
+tomato,1,NaN,6 oz ,6,oz,0.375
+zucchini ,1,NaN,7 oz ,7,oz,0.4375
