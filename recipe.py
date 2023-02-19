@@ -6,8 +6,10 @@ import pandas as pd
 
 load_dotenv()
 # load secrets
-key = os.environ.get("X-RapidAPI-Key")
-host = os.environ.get("X-RapidAPI-Host")
+# key = os.environ.get("X-RapidAPI-Key")
+# host = os.environ.get("X-RapidAPI-Host")
+app_id = os.environ.get("app_id")
+app_key = os.environ.get("app_key")
 
 def convert_detailed_nutritional_value_to_df(X):
     column_names = ['label', 'total', 'hasRDI','daily','unit']
@@ -27,31 +29,35 @@ def convert_detailed_nutritional_value_to_df(X):
     return df
     
 def calculate_nutrition_score_for_each_recipe(ingredient):
-    # TODO: implement for loop to get ALL recipes
 
-    url = "https://edamam-recipe-search.p.rapidapi.com/search"
-    headers = {
-        "X-RapidAPI-Key": key,
-        "X-RapidAPI-Host": host
-    }
-    params = {"q": ingredient,} # put only the main ingredient
+    # url = "https://edamam-recipe-search.p.rapidapi.com/search"
+    # headers = {
+    #     "X-RapidAPI-Key": key,
+    #     "X-RapidAPI-Host": host
+    # }
+    # params = {"q": ingredient,} # put only the main ingredient
 
-    response = requests.get(url, headers=headers, params=params)
-    upper_limit = response.json()['count']
+    # response = requests.get(url, headers=headers, params=params)
+
+    start = str(0)
+    end = str(100)
+    url = "https://api.edamam.com/search?q=" + ingredient + "&app_id=" + app_id + "&app_key=" + app_key + "&from=" + start + "&to=" + end
+    response = requests.get(url)
     more = response.json()['more']
 
     df = pd.DataFrame(columns = ['recipe_id', 'recipe_name', 'nutrition_score'], index=None)
-    cnt = 1 #0 
+    cnt = 0
 
-    for interval in range(0, upper_limit+1, 10):
-        params = {
-            "q": ingredient,
-            "from": 1 + interval,
-            "to": 10 + interval
-            }
-        response = requests.get(url, headers=headers, params=params)
+    interval = 0
+
+    while response.status_code == 200 and more == bool('True') and len(response.json()['hits']) > 0:
+        start = str(0 + 100*interval)
+        end = str(100 + 100*interval)
+        url = "https://api.edamam.com/search?q=" + ingredient + "&app_id=" + app_id + "&app_key=" + app_key + "&from=" + start + "&to=" + end
+        response = requests.get(url)
         more = response.json()['more']
-        while more == 'True':
+        interval += 1
+        if response.status_code == 200 and more == bool('True') and len(response.json()['hits']) > 0:
             for i in range(len(response.json()['hits'])):
                 cnt += 1
                 recipe_name = response.json()['hits'][i]['recipe']['label']
@@ -77,6 +83,6 @@ def calculate_nutrition_score_for_each_recipe(ingredient):
                 X_dict['nutrition_score'] = nutrition_score
                 df = df.append([X_dict], ignore_index=True)
     df = df.sort_values(by='nutrition_score', ascending=False)
-    df = df.set_index('recipe_id')
+    # df = df.set_index('recipe_id')
     return df
 

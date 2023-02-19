@@ -7,8 +7,10 @@ from ingredient_parser import parse_multiple_ingredients
 
 load_dotenv()
 # load secrets
-key = os.environ.get("X-RapidAPI-Key")
-host = os.environ.get("X-RapidAPI-Host")
+# key = os.environ.get("X-RapidAPI-Key")
+# host = os.environ.get("X-RapidAPI-Host")
+app_id = os.environ.get("app_id")
+app_key = os.environ.get("app_key")
 
 def parsed_ingredients_list_to_dataframe(X):
     column_names = [
@@ -54,13 +56,18 @@ def add_food_category_to_df(X,Y):
 
 def prepare_ingredients_table(ingredient, recipe_idx, portion):
 
-    url = "https://edamam-recipe-search.p.rapidapi.com/search"
-    headers = {
-        "X-RapidAPI-Key": key,
-        "X-RapidAPI-Host": host
-    }
-    params = {"q": ingredient} # put only the main ingredient
-    response = requests.get(url, headers=headers, params=params)
+    # url = "https://edamam-recipe-search.p.rapidapi.com/search"
+    # headers = {
+    #     "X-RapidAPI-Key": key,
+    #     "X-RapidAPI-Host": host
+    # }
+    # params = {"q": ingredient} # put only the main ingredient
+    # response = requests.get(url, headers=headers, params=params)
+
+    start = str(0)
+    end = str(recipe_idx+1)
+    url = "https://api.edamam.com/search?q=" + ingredient + "&app_id=" + app_id + "&app_key=" + app_key + "&from=" + start + "&to=" + end
+    response = requests.get(url)
     recipe_yield = response.json()['hits'][recipe_idx]['recipe']['yield']
     detailed_list_of_ingredients = response.json()['hits'][recipe_idx]['recipe']['ingredients']
     list_of_ingredients = response.json()['hits'][recipe_idx]['recipe']['ingredientLines']
@@ -72,22 +79,23 @@ def prepare_ingredients_table(ingredient, recipe_idx, portion):
 
     return df_ingredients_list
 
-def get_recipe_url(X, Y):
-    ingredient = X
-    recipe_idx = Y
+def get_recipe_url(ingredient, recipe_idx):
 
-    url = "https://edamam-recipe-search.p.rapidapi.com/search"
-    headers = {
-        "X-RapidAPI-Key": key,
-        "X-RapidAPI-Host": host
-    }
-    params = {"q": ingredient} # put only the main ingredient
-    response = requests.get(url, headers=headers, params=params)
+    # url = "https://edamam-recipe-search.p.rapidapi.com/search"
+    # headers = {
+    #     "X-RapidAPI-Key": key,
+    #     "X-RapidAPI-Host": host
+    # }
+    # params = {"q": ingredient} # put only the main ingredient
+
+    start = str(0)
+    end = str(recipe_idx+1)
+    url = "https://api.edamam.com/search?q=" + ingredient + "&app_id=" + app_id + "&app_key=" + app_key + "&from=" + start + "&to=" + end
+    response = requests.get(url)
 
     recipe_url = response.json()['hits'][recipe_idx]['recipe']['url']
 
     return recipe_url
-
 
 # def prepare_ingredients_table(X, Y, Z):
 #     ingredient = X
