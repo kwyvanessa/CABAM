@@ -1,5 +1,5 @@
 ingredient_parser==1.0.2
-ingredient_parser_nlp==0.1.0a3
+ingredient_parser_nlp==0.1.0a4
 numpy==1.21.5
 pandas==1.4.4
 Pillow==9.4.0
