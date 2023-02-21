@@ -5,7 +5,6 @@ import json
 from dotenv import load_dotenv
 from product_info_from_request import extract_product_info
 from avg_weight_vegetables import get_avg_weight
-from get_refresh_token import get_refresh_token
 
 load_dotenv()
 

@@ -4,6 +4,7 @@ import json
 from dotenv import load_dotenv
 import pandas as pd
 from ingredient_parser import parse_multiple_ingredients
+from ingredient_parser import parse_ingredient
 
 load_dotenv()
 # load secrets
@@ -27,8 +28,6 @@ def parsed_ingredients_list_to_dataframe(X):
                 temp_data.append('NaN')
         df[column] = temp_data
     return df
-
-from ingredient_parser import parse_ingredient
 
 def dict_with_item_and_food_category_and_weight(X):
     X_dict = {}
