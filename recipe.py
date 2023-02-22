@@ -30,15 +30,6 @@ def convert_detailed_nutritional_value_to_df(X):
     
 def calculate_nutrition_score_for_each_recipe(ingredient):
 
-    # url = "https://edamam-recipe-search.p.rapidapi.com/search"
-    # headers = {
-    #     "X-RapidAPI-Key": key,
-    #     "X-RapidAPI-Host": host
-    # }
-    # params = {"q": ingredient,} # put only the main ingredient
-
-    # response = requests.get(url, headers=headers, params=params)
-
     start = str(0)
     end = str(100)
     url = "https://api.edamam.com/search?q=" + ingredient + "&app_id=" + app_id + "&app_key=" + app_key + "&from=" + start + "&to=" + end
@@ -83,6 +74,5 @@ def calculate_nutrition_score_for_each_recipe(ingredient):
                 X_dict['nutrition_score'] = nutrition_score
                 df = df.append([X_dict], ignore_index=True)
     df = df.sort_values(by='nutrition_score', ascending=False)
-    # df = df.set_index('recipe_id')
     return df
 

@@ -112,13 +112,13 @@ def extract_all_vegetable_products(location):
     vegetable_products.sort_values(by='lowest_price_per_lb')
     return vegetable_products
 
-def extract_vegetable_products(location):
-    vegetable_products = extract_all_vegetable_products(location)
+def extract_vegetable_products(vegetable_products):
+    # vegetable_products = extract_all_vegetable_products(location)
     vegetable_list = vegetable_products['description'].tolist()[0:3]
     return vegetable_list
 
-def extract_cheapest_vegetable_products(location):
-    vegetable_products = extract_all_vegetable_products(location)
+def extract_cheapest_vegetable_products(vegetable_products):
+    # vegetable_products = extract_all_vegetable_products(location)
     vegetable_list = vegetable_products['description'].tolist()[0:1]
     return vegetable_list
 
