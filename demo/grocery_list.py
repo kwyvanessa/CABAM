@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
+import nltk 
+nltk.download('averaged_perceptron_tagger') 
 
 from product_info_from_request import extract_product_info
 from vegetable_products import extract_all_vegetable_products
