@@ -17,4 +17,4 @@ At the moment, you can access CABAM using https://cabam.onrender.com/
 * Broaden the scope of grocery stores 
 * Implement a recommendation engine for recipes that uses the same/similar ingredients (That way, you know what to do with the leftover ingredients!)
 
-Technologies used: REST API, NLP, streamlit, pandas
+Technologies used: Python, REST API, NLP, streamlit, pandas, [Kroger APIs](https://developer.kroger.com/), [Edamam API](https://www.edamam.com/)
