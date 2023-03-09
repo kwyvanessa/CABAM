@@ -10,7 +10,7 @@ st.header('What does the data 📈📊📉 tell us?')
 # Content
 st.subheader("What is the propotion of fresh vegetable produce sold by weight vs. by piece?")
 # # (static) plot 1
-image = Image.open('ratio_of_fresh_vegetable_produce_sold_by_ct_vs_weight.png')
+image = Image.open('ratio_of_fresh_vegetable_produce_sold_by_ct_vs_weight_pie.png')
 st.image(image, width=500)
 
 # 
