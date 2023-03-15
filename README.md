@@ -8,7 +8,7 @@ Based on the user's ZIPCODE, CABAM searches for the closest Kroger store locatio
 
 <img src="https://github.com/kwyvanessa/CABAM/blob/main/CABAM_flow%20chart_transparent_bkgd.png" width="750" height="500">
 
-*CABAM currently only supports products from Kroger grocery stores, and you can test the app with ZIPCODE 75204*
+CABAM currently only supports products from Kroger grocery stores, and you can test the app with ZIPCODE "75204"
 
 ### What is the "Nutrition Score Pyramid"?
 <img src="https://github.com/kwyvanessa/CABAM/blob/main/CABAM_nutrition_score_pyramid_transparent_bkgd.png" width="550" height="350">
