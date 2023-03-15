@@ -14,7 +14,7 @@ CABAM currently only supports products from Kroger grocery stores, and you can t
 <img src="https://github.com/kwyvanessa/CABAM/blob/main/CABAM_nutrition_score_pyramid_transparent_bkgd.png" width="550" height="350">
 
 ### How do you access it?
-At the moment, you can access CABAM using https://cabam.onrender.com/
+At the moment, you can access CABAM using https://kwyvanessa-cabam.streamlit.app/
 
 ### Future directions
 * Expand to other fresh groceries
