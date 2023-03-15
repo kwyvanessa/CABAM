@@ -12,11 +12,27 @@ IGNORE_GROCERY_COLS = ['categories','itemId','favorite','fulfillment_curbside','
 def get_grocery_list(vegetable_products, ingredient, recipe_idx, portion):
     #find cheapest price for groceries needed
     df_ingredients_table = prepare_ingredients_table(ingredient, recipe_idx, portion)
-    ingredients_search = df_ingredients_table['name'][df_ingredients_table['food_category']=='vegetables'].tolist()
+    description_list = df_ingredients_table['name'].tolist()
+    description_list = [i.split() for i in description_list]
+    alt_description_list = []
+    for ingredients in description_list:
+        sorted_ingredients = sorted(ingredients)
+        new_string = " ".join(sorted_ingredients)
+        alt_description_list.append(new_string)
+    df_ingredients_table['sorted_name'] = alt_description_list
+    ingredients_search = df_ingredients_table['sorted_name'][df_ingredients_table['food_category']=='vegetables'].tolist()
     df_vegetable_products = vegetable_products
-    df_sel_vegetable_products = df_vegetable_products[df_vegetable_products['description'].isin(ingredients_search)]
+    description_list = df_vegetable_products['description'].tolist()
+    description_list = [i.split() for i in description_list]
+    alt_description_list = []
+    for ingredients in description_list:
+        sorted_ingredients = sorted(ingredients)
+        new_string = " ".join(sorted_ingredients)
+        alt_description_list.append(new_string)
+    df_vegetable_products['sorted_name'] = alt_description_list
+    df_sel_vegetable_products = df_vegetable_products[df_vegetable_products['sorted_name'].isin(ingredients_search)]
     df_grocery_list = pd.DataFrame()
-    df_grocery_list['description'] = df_ingredients_table['name'][df_ingredients_table['food_category']=='vegetables']
+    df_grocery_list['description'] = df_ingredients_table['sorted_name'][df_ingredients_table['food_category']=='vegetables']
     df_grocery_list['total_weight_in_lb'] = df_ingredients_table['recipe_weight_in_lb']/df_ingredients_table['recipe_yield']*df_ingredients_table['preferred_yield']
     df_grocery_list = df_grocery_list.merge(df_sel_vegetable_products, how='outer', on='description')
     df_grocery_list['cost'] = (df_grocery_list['lowest_price_per_lb'][df_grocery_list['soldBy']=='WEIGHT'])*(df_grocery_list['total_weight_in_lb'])
