@@ -35,7 +35,7 @@ image = Image.open('CABAM_flow chart_transparent_bkgd.png')
 st.image(image, width=800)
 st.write(
  """
- CABAM currently only supports products from Kroger grocery stores, and you can test the app with ZIPCODE "75204"
+ CABAM currently only supports vegetarian recipes and vegetable products from Kroger grocery stores, and you can test the app with ZIPCODE "75204"
  """
 )
 # 
