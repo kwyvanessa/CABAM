@@ -97,7 +97,7 @@ if priority != '':
                 (recipes_list))
             st.form_submit_button('So what ingredients would I need? 🧐')
     if selected_recipe != 'none':
-        recipe_idx = recipes.index[recipes['recipe_name'] == selected_recipe].tolist()[0]
+        recipe_idx = recipes['recipe_id'][recipes['recipe_name'] == selected_recipe].tolist()[0]
         st.text("")
         st.markdown('<p class="question-font">How many servings 🍽 would you like?</p>', unsafe_allow_html=True)
         with st.form("portion"):

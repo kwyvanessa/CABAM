@@ -37,7 +37,6 @@ def calculate_nutrition_score_for_each_recipe(ingredient):
     more = response.json()['more']
 
     df = pd.DataFrame(columns = ['recipe_id', 'recipe_name', 'nutrition_score'], index=None)
-    cnt = 0
 
     interval = 0
 
@@ -51,9 +50,8 @@ def calculate_nutrition_score_for_each_recipe(ingredient):
         if response.status_code == 200 and more == bool('True') and len(response.json()['hits']) > 0:
             for i in range(len(response.json()['hits'])):
                 health_labels = [i.lower() for i in response.json()['hits'][i]['recipe']['healthLabels']]
-                #include only vegetarian recipes
+                #include only vegetarian recipes and main course
                 if 'vegetarian' in health_labels:
-                    cnt += 1
                     recipe_name = response.json()['hits'][i]['recipe']['label']
                     recipe_yield = response.json()['hits'][i]['recipe']['yield']
                     detailed_nutritional_value = response.json()['hits'][i]['recipe']['digest']
@@ -72,7 +70,7 @@ def calculate_nutrition_score_for_each_recipe(ingredient):
                     nutrition_score += df_detailed_nutritional_value['DV(%)'][(df_detailed_nutritional_value['DV(%)'] >=100)].count()*-1
                     nutrition_score += df_detailed_nutritional_value['DV(%)'][(df_detailed_nutritional_value['DV(%)'] == -1)].count()*-1
                     X_dict = {}
-                    X_dict['recipe_id'] = cnt
+                    X_dict['recipe_id'] = i 
                     X_dict['recipe_name'] = recipe_name
                     X_dict['nutrition_score'] = nutrition_score
                     df = df.append([X_dict], ignore_index=True)
